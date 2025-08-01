@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Clock, ExternalLink, Star } from "lucide-react"
+import { ArrowRight, Clock, ExternalLink, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
@@ -26,121 +26,47 @@ export default function PortfolioPage() {
   const caseStudies = [
     {
       id: 1,
-      title: "TechScale Solutions: 300% Revenue Growth",
-      client: "TechScale Solutions",
-      industry: "SaaS",
-      challenge: "Manual customer onboarding was taking 2 weeks and causing 40% churn rate",
-      solution: "AI-powered onboarding automation with personalized workflows",
+      title: "Breethr: Comprehensive Technical Solutions",
+      client: "Breethr",
+      industry: "HR Technology",
+      challenge: "Required end-to-end development expertise for their HR technology platform",
+      solution: "Delivered comprehensive backend development, frontend interfaces, and cloud infrastructure solutions",
       impact: {
-        revenue: "+300%",
-        efficiency: "+85%",
-        satisfaction: "4.9/5",
+        delivery: "On-time",
+        quality: "Exceptional",
+        satisfaction: "100%",
       },
-      timeline: "6 weeks",
+      timeline: "Ongoing partnership",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["AI Automation", "Customer Success", "SaaS"],
+      tags: ["Backend Development", "Frontend", "Cloud Infrastructure"],
       testimonial:
-        "InnovateCorp transformed our entire business model. We went from struggling with churn to becoming the fastest-growing company in our space.",
-      author: "Sarah Chen, CEO",
+        "IdeaVerse has been instrumental in bringing our vision to life. Their comprehensive approach and technical expertise exceeded our expectations.",
+      author: "Breethr Team",
+      status: "Completed",
     },
     {
       id: 2,
-      title: "RetailMax: Smart Inventory Optimization",
-      client: "RetailMax",
-      industry: "E-commerce",
-      challenge: "Overstocking and stockouts were costing $2M annually in lost revenue",
-      solution: "Predictive analytics platform for demand forecasting and inventory optimization",
+      title: "ActiveBuildings: Strategic Partnership",
+      client: "ActiveBuildings",
+      industry: "PropTech",
+      challenge: "Needed a reliable technical partner for ongoing development and infrastructure management",
+      solution: "Providing continuous full-stack development support and project management expertise",
       impact: {
-        revenue: "+150%",
-        efficiency: "+70%",
-        satisfaction: "4.8/5",
+        partnership: "Active",
+        scope: "Full-stack",
+        approach: "Collaborative",
       },
-      timeline: "8 weeks",
+      timeline: "Ongoing partnership",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["Predictive Analytics", "E-commerce", "Optimization"],
+      tags: ["Full-Stack Development", "Project Management", "PropTech"],
       testimonial:
-        "Our inventory costs dropped by 60% while sales increased 150%. The ROI was immediate and continues to compound.",
-      author: "Mike Rodriguez, COO",
-    },
-    {
-      id: 3,
-      title: "FinanceFirst: Automated Compliance Reporting",
-      client: "FinanceFirst",
-      industry: "Financial Services",
-      challenge: "Manual compliance reporting took 200 hours monthly and was error-prone",
-      solution: "Automated compliance suite with real-time monitoring and reporting",
-      impact: {
-        revenue: "+200%",
-        efficiency: "+95%",
-        satisfaction: "5.0/5",
-      },
-      timeline: "12 weeks",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Compliance", "Automation", "Financial Services"],
-      testimonial:
-        "We reduced compliance work from 200 hours to 10 hours per month. Our auditors were amazed by the accuracy and completeness.",
-      author: "Jennifer Park, Chief Compliance Officer",
-    },
-    {
-      id: 4,
-      title: "HealthTech Pro: Patient Data Analytics",
-      client: "HealthTech Pro",
-      industry: "Healthcare",
-      challenge: "Fragmented patient data across systems made care coordination difficult",
-      solution: "Unified patient analytics platform with AI-powered insights",
-      impact: {
-        revenue: "+180%",
-        efficiency: "+80%",
-        satisfaction: "4.9/5",
-      },
-      timeline: "10 weeks",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Healthcare", "Data Integration", "AI Analytics"],
-      testimonial:
-        "Patient outcomes improved dramatically when we could see the complete picture. This platform saved lives and our business.",
-      author: "Dr. Amanda Foster, Chief Medical Officer",
-    },
-    {
-      id: 5,
-      title: "LogiFlow: Supply Chain Optimization",
-      client: "LogiFlow",
-      industry: "Logistics",
-      challenge: "Complex supply chain inefficiencies were causing delays and cost overruns",
-      solution: "AI-powered supply chain optimization with real-time tracking",
-      impact: {
-        revenue: "+220%",
-        efficiency: "+75%",
-        satisfaction: "4.8/5",
-      },
-      timeline: "14 weeks",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Supply Chain", "Logistics", "Real-time Tracking"],
-      testimonial:
-        "Delivery times improved by 60% and costs dropped by 40%. Our customers noticed the difference immediately.",
-      author: "Carlos Martinez, VP Operations",
-    },
-    {
-      id: 6,
-      title: "EduTech Academy: Personalized Learning",
-      client: "EduTech Academy",
-      industry: "Education",
-      challenge: "One-size-fits-all approach led to poor student engagement and outcomes",
-      solution: "AI-driven personalized learning platform with adaptive content",
-      impact: {
-        revenue: "+250%",
-        efficiency: "+90%",
-        satisfaction: "4.9/5",
-      },
-      timeline: "16 weeks",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Education", "Personalization", "AI Learning"],
-      testimonial:
-        "Student completion rates increased 300% and satisfaction scores hit all-time highs. This transformed how we deliver education.",
-      author: "Dr. Lisa Thompson, Academic Director",
+        "Working with IdeaVerse feels like having an extended technical team. Their expertise spans every aspect of our development needs.",
+      author: "ActiveBuildings Team",
+      status: "Active",
     },
   ]
 
-  const industries = ["All", "SaaS", "E-commerce", "Financial Services", "Healthcare", "Logistics", "Education"]
+  const industries = ["All", "HR Technology", "PropTech"]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
@@ -148,29 +74,18 @@ export default function PortfolioPage() {
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg"></div>
-              <span className="text-xl font-bold text-slate-900">InnovateCorp</span>
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                IV
+              </div>
+              <span className="text-2xl font-bold text-slate-900">IdeaVerse</span>
             </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/about" className="text-slate-600 hover:text-slate-900 transition-colors">
-                About
-              </Link>
-              <Link href="/services" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Services
-              </Link>
-              <Link href="/portfolio" className="text-blue-600 font-medium">
-                Portfolio
-              </Link>
-              <Link href="/blog" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Blog
-              </Link>
-              <Link href="/contact">
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                  Get Started
-                </Button>
-              </Link>
-            </div>
+            <Link href="/">
+              <Button variant="outline" className="flex items-center bg-transparent">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Home
+              </Button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -181,20 +96,20 @@ export default function PortfolioPage() {
           <motion.div initial="initial" animate="animate" variants={staggerChildren}>
             <motion.div variants={fadeInUp}>
               <Badge className="mb-6 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 border-blue-200">
-                Success Stories
+                Client Partnerships
               </Badge>
             </motion.div>
 
             <motion.h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight" variants={fadeInUp}>
-              Real results from{" "}
+              Proven results with{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                real businesses
+                trusted partners
               </span>
             </motion.h1>
 
             <motion.p className="text-xl text-slate-600 leading-relaxed" variants={fadeInUp}>
-              See how we've helped companies across industries transform their operations and achieve extraordinary
-              growth.
+              See how we've helped our select clients achieve their technical goals through comprehensive development
+              solutions and strategic partnerships.
             </motion.p>
           </motion.div>
         </div>
@@ -211,10 +126,10 @@ export default function PortfolioPage() {
             viewport={{ once: true }}
           >
             {[
-              { number: "500+", label: "Projects Completed" },
-              { number: "300%", label: "Average ROI" },
-              { number: "99.9%", label: "Uptime Guarantee" },
-              { number: "48hrs", label: "Average Response Time" },
+              { number: "2", label: "Active Partnerships" },
+              { number: "100%", label: "Client Satisfaction" },
+              { number: "24hrs", label: "Response Time" },
+              { number: "2024", label: "Founded" },
             ].map((stat, index) => (
               <motion.div key={index} variants={fadeInUp}>
                 <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
@@ -230,7 +145,7 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto">
           <Tabs defaultValue="All" className="w-full">
             <div className="flex justify-center mb-12">
-              <TabsList className="grid grid-cols-3 lg:grid-cols-7 w-full max-w-4xl">
+              <TabsList className="grid grid-cols-3 w-full max-w-2xl">
                 {industries.map((industry) => (
                   <TabsTrigger key={industry} value={industry} className="text-sm">
                     {industry}
@@ -263,11 +178,12 @@ export default function PortfolioPage() {
                           <CardHeader>
                             <div className="flex items-center justify-between mb-2">
                               <Badge variant="secondary">{study.industry}</Badge>
-                              <div className="flex items-center text-yellow-500">
-                                {[...Array(5)].map((_, i) => (
-                                  <Star key={i} className="h-4 w-4 fill-current" />
-                                ))}
-                              </div>
+                              <Badge
+                                variant={study.status === "Active" ? "default" : "outline"}
+                                className={study.status === "Active" ? "bg-green-100 text-green-700" : ""}
+                              >
+                                {study.status}
+                              </Badge>
                             </div>
                             <CardTitle className="text-xl text-slate-900 mb-2">{study.title}</CardTitle>
                             <div className="flex flex-wrap gap-2 mb-4">
@@ -290,18 +206,12 @@ export default function PortfolioPage() {
                             </div>
 
                             <div className="grid grid-cols-3 gap-4 py-4 bg-slate-50 rounded-lg px-4">
-                              <div className="text-center">
-                                <div className="text-lg font-bold text-green-600">{study.impact.revenue}</div>
-                                <div className="text-xs text-slate-600">Revenue</div>
-                              </div>
-                              <div className="text-center">
-                                <div className="text-lg font-bold text-blue-600">{study.impact.efficiency}</div>
-                                <div className="text-xs text-slate-600">Efficiency</div>
-                              </div>
-                              <div className="text-center">
-                                <div className="text-lg font-bold text-purple-600">{study.impact.satisfaction}</div>
-                                <div className="text-xs text-slate-600">Satisfaction</div>
-                              </div>
+                              {Object.entries(study.impact).map(([key, value], idx) => (
+                                <div key={key} className="text-center">
+                                  <div className="text-lg font-bold text-green-600">{value}</div>
+                                  <div className="text-xs text-slate-600 capitalize">{key}</div>
+                                </div>
+                              ))}
                             </div>
 
                             <blockquote className="border-l-4 border-blue-200 pl-4 italic text-sm text-slate-600">
@@ -314,8 +224,8 @@ export default function PortfolioPage() {
                                 <Clock className="h-4 w-4 mr-1" />
                                 {study.timeline}
                               </div>
-                              <Button variant="outline" size="sm">
-                                View Details
+                              <Button variant="outline" size="sm" disabled>
+                                Confidential Project
                                 <ExternalLink className="ml-2 h-4 w-4" />
                               </Button>
                             </div>
@@ -339,10 +249,10 @@ export default function PortfolioPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-slate-900 mb-6">Ready to write your success story?</h2>
+            <h2 className="text-4xl font-bold text-slate-900 mb-6">Ready to become our next success story?</h2>
             <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-              Join the companies that chose transformation over status quo. Let's discuss how we can help you achieve
-              similar results.
+              We're selective about our partnerships to ensure we can deliver exceptional results. Let's discuss how we
+              can help achieve your technical goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
@@ -350,7 +260,7 @@ export default function PortfolioPage() {
                   size="lg"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6"
                 >
-                  Start Your Transformation
+                  Start a Partnership
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>

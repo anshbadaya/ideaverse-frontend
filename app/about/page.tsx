@@ -24,32 +24,32 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: "Alex Rivera",
-      role: "CEO & Founder",
+      name: "Technical Lead",
+      role: "Full-Stack Architecture",
       image: "/placeholder.svg?height=300&width=300",
-      philosophy: "Innovation happens when technology meets human insight.",
-      bio: "Former VP at TechGiant, built 3 successful startups. Loves hiking and terrible dad jokes.",
+      philosophy: "Every line of code should serve a purpose and solve a real problem.",
+      bio: "Experienced in modern frameworks, cloud infrastructure, and scalable system design. Passionate about clean code and efficient solutions.",
     },
     {
-      name: "Sam Chen",
-      role: "CTO",
+      name: "Development Partner",
+      role: "Frontend & UX",
       image: "/placeholder.svg?height=300&width=300",
-      philosophy: "Code should solve problems, not create them.",
-      bio: "Ex-Google engineer, AI researcher. Collects vintage keyboards and makes amazing coffee.",
+      philosophy: "Great user experiences are built on solid technical foundations.",
+      bio: "Specializes in React ecosystems, responsive design, and performance optimization. Believes in user-centered development.",
     },
     {
-      name: "Maya Patel",
-      role: "Head of Growth",
+      name: "Cloud Specialist",
+      role: "Infrastructure & DevOps",
       image: "/placeholder.svg?height=300&width=300",
-      philosophy: "Data tells stories, but humans write the endings.",
-      bio: "Growth hacker turned strategist. Marathon runner who thinks in metrics and dreams in conversions.",
+      philosophy: "Reliable infrastructure is the backbone of successful applications.",
+      bio: "Expert in AWS/Azure deployments, CI/CD pipelines, and monitoring solutions. Ensures scalable and secure systems.",
     },
     {
-      name: "Jordan Kim",
-      role: "Head of Design",
+      name: "Project Coordinator",
+      role: "Client Relations & Strategy",
       image: "/placeholder.svg?height=300&width=300",
-      philosophy: "Beautiful design is invisible until it's missing.",
-      bio: "Design thinking evangelist, former agency creative director. Weekend pottery enthusiast.",
+      philosophy: "Clear communication and aligned expectations lead to successful partnerships.",
+      bio: "Manages client relationships, project timelines, and strategic planning. Ensures smooth collaboration and delivery.",
     },
   ]
 
@@ -88,14 +88,13 @@ export default function AboutPage() {
             <motion.h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight" variants={fadeInUp}>
               We believe in{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                human potential
-              </span>{" "}
-              amplified by technology
+                quality over quantity
+              </span>
             </motion.h1>
 
             <motion.p className="text-xl text-slate-600 leading-relaxed" variants={fadeInUp}>
-              Started in 2020 when we realized most businesses were drowning in manual processes while AI sat unused on
-              the shelf. We decided to change that.
+              Founded in 2024 as a boutique development studio, we focus on delivering exceptional results for select
+              clients. Quality partnerships over volume contracts.
             </motion.p>
           </motion.div>
         </div>
@@ -112,17 +111,17 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <div>
-              <h2 className="text-4xl font-bold text-slate-900 mb-6">It started with a simple question</h2>
+              <h2 className="text-4xl font-bold text-slate-900 mb-6">Built on a simple principle</h2>
               <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
-                <p>"Why are brilliant people spending 60% of their time on tasks a computer could do better?"</p>
+                <p>"Every client deserves dedicated expertise, not divided attention."</p>
                 <p>
-                  Our founder Alex was watching his team at a Fortune 500 company manually process thousands of customer
-                  requests daily. Meanwhile, the AI tools they'd invested millions in sat largely unused because they
-                  were too complex to implement.
+                  We started IdeaVerse because we saw too many development teams spread thin across dozens of projects,
+                  delivering mediocre results. We chose a different path - working with fewer clients to deliver
+                  exceptional outcomes.
                 </p>
                 <p>
-                  That's when we realized the problem wasn't technology – it was the gap between what's possible and
-                  what's practical. We started IdeaVerse to bridge that gap.
+                  Our current partnerships with Breethr and ActiveBuildings exemplify this approach. By focusing deeply
+                  on each client's unique needs, we deliver solutions that truly make a difference.
                 </p>
               </div>
             </div>
@@ -133,8 +132,8 @@ export default function AboutPage() {
                 className="rounded-2xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-xl shadow-xl">
-                <div className="text-3xl font-bold">4 years</div>
-                <div className="text-blue-100">of transforming businesses</div>
+                <div className="text-3xl font-bold">2024</div>
+                <div className="text-blue-100">Founded with purpose</div>
               </div>
             </div>
           </motion.div>
@@ -151,9 +150,9 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">What drives us every day</h2>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">What drives our work</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              These aren't just words on a wall. They're the principles that guide every decision we make.
+              These principles guide every decision we make and every line of code we write.
             </p>
           </motion.div>
 
@@ -167,26 +166,26 @@ export default function AboutPage() {
             {[
               {
                 icon: <Heart className="h-8 w-8" />,
-                title: "Human-First",
-                description: "Technology should enhance human potential, not replace it.",
+                title: "Client-Focused",
+                description: "Every solution is tailored to your specific business needs and goals.",
                 color: "from-red-400 to-pink-500",
               },
               {
                 icon: <Target className="h-8 w-8" />,
                 title: "Results-Driven",
-                description: "We measure success by your growth, not our features.",
+                description: "We measure success by the tangible impact we create for your business.",
                 color: "from-blue-400 to-indigo-500",
               },
               {
                 icon: <Lightbulb className="h-8 w-8" />,
-                title: "Relentlessly Curious",
-                description: "Every problem is a puzzle waiting to be solved.",
+                title: "Innovation-First",
+                description: "Leveraging cutting-edge technologies to solve complex challenges.",
                 color: "from-yellow-400 to-orange-500",
               },
               {
                 icon: <Users className="h-8 w-8" />,
-                title: "Radically Transparent",
-                description: "Honest communication builds lasting partnerships.",
+                title: "Partnership Approach",
+                description: "We work as an extension of your team, not just another vendor.",
                 color: "from-green-400 to-teal-500",
               },
             ].map((value, index) => (
@@ -218,9 +217,9 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Meet the humans behind the magic</h2>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Meet our focused team</h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              We're not just colleagues – we're a family of problem-solvers, dreamers, and coffee enthusiasts.
+              A small, dedicated team of specialists who bring deep expertise to every project.
             </p>
           </motion.div>
 
@@ -265,9 +264,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-6">Want to be part of our story?</h2>
+            <h2 className="text-4xl font-bold text-white mb-6">Ready to partner with us?</h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Whether you're looking to transform your business or join our team, we'd love to hear from you.
+              We're selective about our partnerships to ensure we can deliver exceptional results. Let's discuss if
+              we're the right fit for your project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/#contact">
@@ -276,13 +276,13 @@ export default function AboutPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="/careers">
+              <Link href="/portfolio">
                 <Button
                   size="lg"
                   variant="outline"
                   className="text-lg px-8 py-6 border-white text-white hover:bg-white hover:text-blue-600 bg-transparent"
                 >
-                  Join Our Team
+                  View Our Work
                 </Button>
               </Link>
             </div>

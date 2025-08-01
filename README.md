@@ -1,30 +1,82 @@
-# Company website redesign
+# IdeaVerse Development Studio Website
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+This is the official website for IdeaVerse, a development studio focused on delivering high-quality, impactful digital solutions.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/ansh-badayas-projects/v0-company-website-redesign)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/LJo0ZFnrPXD)
+## Project Overview
 
-## Overview
+The website showcases IdeaVerse's services, client portfolio, and contact information. It emphasizes a commitment to quality over quantity, highlighting successful collaborations with clients like Breethr and ActiveBuildings.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Technologies Used
+
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion (for animations)
+
+## Getting Started
+
+To run this project locally:
+
+1.  **Clone the repository:**
+    \`\`\`bash
+    git clone <repository-url>
+    cd ideaverse-website
+    \`\`\`
+2.  **Install dependencies:**
+    \`\`\`bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    \`\`\`
+3.  **Run the development server:**
+    \`\`\`bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    \`\`\`
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+## Project Structure
+
+-   `app/`: Contains Next.js App Router pages and layouts.
+    -   `layout.tsx`: Root layout for the application.
+    -   `page.tsx`: Home page.
+    -   `about/page.tsx`: About Us page.
+    -   `portfolio/page.tsx`: Portfolio page.
+    -   `services/page.tsx`: Services page.
+    -   `contact/page.tsx`: Contact Us page.
+-   `components/`: Reusable React components, including shadcn/ui components.
+    -   `ui/`: shadcn/ui components.
+-   `public/`: Static assets like images.
+-   `hooks/`: Custom React hooks.
+-   `lib/`: Utility functions.
+-   `styles/`: Global CSS.
+
+## Customization
+
+-   **Content:** All text content can be modified directly within the respective page components (`app/*.tsx`).
+-   **Styling:** Tailwind CSS classes are used for styling. You can customize `tailwind.config.ts` for theme adjustments or modify classes directly in components.
+-   **Animations:** Framer Motion is used for animations. Adjust `motion.div` props for different effects.
 
 ## Deployment
 
-Your project is live at:
+This project is designed to be easily deployed to Vercel.
 
-**[https://vercel.com/ansh-badayas-projects/v0-company-website-redesign](https://vercel.com/ansh-badayas-projects/v0-company-website-redesign)**
+1.  **Install Vercel CLI:**
+    \`\`\`bash
+    npm i -g vercel
+    \`\`\`
+2.  **Deploy:**
+    \`\`\`bash
+    vercel
+    \`\`\`
+    Follow the prompts to deploy your project.
 
-## Build your app
+## Contributing
 
-Continue building your app on:
-
-**[https://v0.dev/chat/projects/LJo0ZFnrPXD](https://v0.dev/chat/projects/LJo0ZFnrPXD)**
-
-## How It Works
-
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Feel free to fork this repository and make your own modifications.

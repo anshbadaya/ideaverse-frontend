@@ -1,21 +1,18 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Clock, ExternalLink, ArrowLeft } from "lucide-react"
-import Link from "next/link"
 import { motion } from "framer-motion"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
 export default function PortfolioPage() {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+  const fadeIn = {
+    initial: { opacity: 0, y: 50 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
+    transition: { duration: 0.8, ease: "easeOut" },
   }
 
-  const staggerChildren = {
+  const staggerContainer = {
     animate: {
       transition: {
         staggerChildren: 0.1,
@@ -23,256 +20,117 @@ export default function PortfolioPage() {
     },
   }
 
-  const caseStudies = [
+  const projects = [
     {
-      id: 1,
-      title: "Breethr: Comprehensive Technical Solutions",
-      client: "Breethr",
-      industry: "HR Technology",
-      challenge: "Required end-to-end development expertise for their HR technology platform",
-      solution: "Delivered comprehensive backend development, frontend interfaces, and cloud infrastructure solutions",
-      impact: {
-        delivery: "On-time",
-        quality: "Exceptional",
-        satisfaction: "100%",
-      },
-      timeline: "Ongoing partnership",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Backend Development", "Frontend", "Cloud Infrastructure"],
-      testimonial:
-        "IdeaVerse has been instrumental in bringing our vision to life. Their comprehensive approach and technical expertise exceeded our expectations.",
-      author: "Breethr Team",
-      status: "Completed",
+      name: "Breethr - AI-Powered Wellness App",
+      description:
+        "A revolutionary mobile application that uses AI to provide personalized breathing exercises and mindfulness techniques.",
+      image: "/placeholder.png?height=400&width=600",
+      tags: ["Mobile App", "AI/ML", "HealthTech", "UI/UX"],
+      link: "#",
     },
     {
-      id: 2,
-      title: "ActiveBuildings: Strategic Partnership",
-      client: "ActiveBuildings",
-      industry: "PropTech",
-      challenge: "Needed a reliable technical partner for ongoing development and infrastructure management",
-      solution: "Providing continuous full-stack development support and project management expertise",
-      impact: {
-        partnership: "Active",
-        scope: "Full-stack",
-        approach: "Collaborative",
-      },
-      timeline: "Ongoing partnership",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Full-Stack Development", "Project Management", "PropTech"],
-      testimonial:
-        "Working with IdeaVerse feels like having an extended technical team. Their expertise spans every aspect of our development needs.",
-      author: "ActiveBuildings Team",
-      status: "Active",
+      name: "ActiveBuildings - Smart Building Management",
+      description:
+        "A comprehensive web platform for managing smart building systems, optimizing energy consumption and operational efficiency.",
+      image: "/placeholder.png?height=400&width=600",
+      tags: ["Web Platform", "IoT", "SaaS", "Data Analytics"],
+      link: "#",
+    },
+    {
+      name: "QuantumFlow - Secure Data Exchange",
+      description:
+        "A blockchain-powered solution for secure and transparent data exchange between enterprises, ensuring data integrity and privacy.",
+      image: "/placeholder.png?height=400&width=600",
+      tags: ["Blockchain", "Security", "Enterprise", "Backend"],
+      link: "#",
+    },
+    {
+      name: "EcoHarvest - Sustainable Agriculture Platform",
+      description:
+        "An intelligent platform assisting farmers with crop management, yield prediction, and sustainable farming practices using satellite imagery.",
+      image: "/placeholder.png?height=400&width=600",
+      tags: ["AI/ML", "Agriculture", "Web App", "GIS"],
+      link: "#",
+    },
+    {
+      name: "Synapse Connect - Real-time Collaboration Tool",
+      description:
+        "A high-performance web-based collaboration suite with real-time document editing, video conferencing, and project management features.",
+      image: "/placeholder.png?height=400&width=600",
+      tags: ["Web App", "Real-time", "Productivity", "Frontend"],
+      link: "#",
+    },
+    {
+      name: "MediTrack - Patient Management System",
+      description:
+        "A secure and intuitive system for healthcare providers to manage patient records, appointments, and billing, enhancing clinic efficiency.",
+      image: "/placeholder.png?height=400&width=600",
+      tags: ["Healthcare", "SaaS", "Database", "Security"],
+      link: "#",
     },
   ]
 
-  const industries = ["All", "HR Technology", "PropTech"]
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                IV
-              </div>
-              <span className="text-2xl font-bold text-slate-900">IdeaVerse</span>
-            </Link>
-            <Link href="/">
-              <Button variant="outline" className="flex items-center bg-transparent">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white pt-24 sm:pt-32 pb-16 sm:pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-16 sm:mb-20"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
+            Our{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">Portfolio</span>
+          </h1>
+          <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            Explore a selection of our recent projects that showcase our expertise and commitment to delivering
+            impactful digital solutions.
+          </p>
+        </motion.div>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial="initial" animate="animate" variants={staggerChildren}>
-            <motion.div variants={fadeInUp}>
-              <Badge className="mb-6 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 border-blue-200">
-                Client Partnerships
-              </Badge>
-            </motion.div>
-
-            <motion.h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight" variants={fadeInUp}>
-              Proven results with{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                trusted partners
-              </span>
-            </motion.h1>
-
-            <motion.p className="text-xl text-slate-600 leading-relaxed" variants={fadeInUp}>
-              See how we've helped our select clients achieve their technical goals through comprehensive development
-              solutions and strategic partnerships.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center"
-            initial="initial"
-            whileInView="animate"
-            variants={staggerChildren}
-            viewport={{ once: true }}
-          >
-            {[
-              { number: "2", label: "Active Partnerships" },
-              { number: "100%", label: "Client Satisfaction" },
-              { number: "24hrs", label: "Response Time" },
-              { number: "2024", label: "Founded" },
-            ].map((stat, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <div className="text-4xl font-bold text-white mb-2">{stat.number}</div>
-                <div className="text-blue-100">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Tabs defaultValue="All" className="w-full">
-            <div className="flex justify-center mb-12">
-              <TabsList className="grid grid-cols-3 w-full max-w-2xl">
-                {industries.map((industry) => (
-                  <TabsTrigger key={industry} value={industry} className="text-sm">
-                    {industry}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </div>
-
-            {industries.map((industry) => (
-              <TabsContent key={industry} value={industry}>
-                <motion.div
-                  className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-                  initial="initial"
-                  whileInView="animate"
-                  variants={staggerChildren}
-                  viewport={{ once: true }}
-                >
-                  {caseStudies
-                    .filter((study) => industry === "All" || study.industry === industry)
-                    .map((study, index) => (
-                      <motion.div key={study.id} variants={fadeInUp}>
-                        <Card className="h-full border-0 bg-white hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                          <div className="aspect-video overflow-hidden">
-                            <img
-                              src={study.image || "/placeholder.svg"}
-                              alt={study.title}
-                              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            />
-                          </div>
-                          <CardHeader>
-                            <div className="flex items-center justify-between mb-2">
-                              <Badge variant="secondary">{study.industry}</Badge>
-                              <Badge
-                                variant={study.status === "Active" ? "default" : "outline"}
-                                className={study.status === "Active" ? "bg-green-100 text-green-700" : ""}
-                              >
-                                {study.status}
-                              </Badge>
-                            </div>
-                            <CardTitle className="text-xl text-slate-900 mb-2">{study.title}</CardTitle>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {study.tags.map((tag, idx) => (
-                                <Badge key={idx} variant="outline" className="text-xs">
-                                  {tag}
-                                </Badge>
-                              ))}
-                            </div>
-                          </CardHeader>
-                          <CardContent className="space-y-6">
-                            <div>
-                              <h4 className="font-semibold text-slate-900 mb-2">Challenge</h4>
-                              <p className="text-sm text-slate-600">{study.challenge}</p>
-                            </div>
-
-                            <div>
-                              <h4 className="font-semibold text-slate-900 mb-2">Solution</h4>
-                              <p className="text-sm text-slate-600">{study.solution}</p>
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-4 py-4 bg-slate-50 rounded-lg px-4">
-                              {Object.entries(study.impact).map(([key, value], idx) => (
-                                <div key={key} className="text-center">
-                                  <div className="text-lg font-bold text-green-600">{value}</div>
-                                  <div className="text-xs text-slate-600 capitalize">{key}</div>
-                                </div>
-                              ))}
-                            </div>
-
-                            <blockquote className="border-l-4 border-blue-200 pl-4 italic text-sm text-slate-600">
-                              "{study.testimonial}"
-                              <footer className="mt-2 text-xs font-medium text-slate-900">— {study.author}</footer>
-                            </blockquote>
-
-                            <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                              <div className="flex items-center text-sm text-slate-600">
-                                <Clock className="h-4 w-4 mr-1" />
-                                {study.timeline}
-                              </div>
-                              <Button variant="outline" size="sm" disabled>
-                                Confidential Project
-                                <ExternalLink className="ml-2 h-4 w-4" />
-                              </Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
+          initial="initial"
+          animate="animate"
+          variants={staggerContainer}
+        >
+          {projects.map((project, index) => (
+            <motion.div key={index} variants={fadeIn}>
+              <Card className="h-full flex flex-col border-0 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardHeader className="p-0">
+                  <img
+                    src={project.image || "/placeholder.png"}
+                    alt={project.name}
+                    className="w-full h-48 object-cover rounded-t-xl"
+                  />
+                </CardHeader>
+                <CardContent className="flex-grow p-6">
+                  <CardTitle className="text-xl font-bold text-slate-900 mb-3">{project.name}</CardTitle>
+                  <p className="text-slate-600 text-base mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
+                      >
+                        {tag}
+                      </span>
                     ))}
-                </motion.div>
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-slate-900 mb-6">Ready to become our next success story?</h2>
-            <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-              We're selective about our partnerships to ensure we can deliver exceptional results. Let's discuss how we
-              can help achieve your technical goals.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-lg px-8 py-6"
-                >
-                  Start a Partnership
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/services">
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent">
-                  Explore Our Services
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                  </div>
+                </CardContent>
+                <CardFooter className="p-6 pt-0">
+                  <Button variant="ghost" className="text-blue-600 hover:text-blue-700 group">
+                    View Case Study
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   )
 }

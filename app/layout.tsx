@@ -3,60 +3,94 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { cn } from "@/lib/utils"
+import { Sidebar } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "IdeaVerse - Transforming Ideas Into Reality",
+  title: "IdeaVerse - Development Studio",
   description:
-    "A boutique development studio specializing in end-to-end solutions. From backend architecture to frontend experiences, AI development to cloud infrastructure - we deliver excellence.",
-  keywords:
-    "development studio, backend development, frontend development, AI development, cloud infrastructure, web development, software development",
-  authors: [{ name: "IdeaVerse" }],
-  creator: "IdeaVerse",
-  publisher: "IdeaVerse",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://ideaverse.com",
-    title: "IdeaVerse - Transforming Ideas Into Reality",
-    description:
-      "A boutique development studio specializing in end-to-end solutions. From backend architecture to frontend experiences, AI development to cloud infrastructure - we deliver excellence.",
-    siteName: "IdeaVerse",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "IdeaVerse - Transforming Ideas Into Reality",
-    description:
-      "A boutique development studio specializing in end-to-end solutions. From backend architecture to frontend experiences, AI development to cloud infrastructure - we deliver excellence.",
-    creator: "@ideaverse",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+    "IdeaVerse is a leading development studio focused on quality over quantity, delivering exceptional software solutions.",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
-}
+      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex min-h-screen flex-col">
+            {/* Header/Navbar */}
+            <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+              <div className="flex items-center gap-4">
+                <Sidebar /> {/* Mobile sidebar toggle */}
+                <Link href="/" className="flex items-center gap-2">
+                  <img src="/logo.png" alt="IdeaVerse Logo" className="h-8 w-auto" />
+                  <span className="text-2xl font-bold text-slate-900">IdeaVerse</span>
+                </Link>
+              </div>
+              <nav className="hidden lg:flex items-center gap-6">
+                <Link href="/" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                  Home
+                </Link>
+                <Link href="/about" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                  About
+                </Link>
+                <Link href="/portfolio" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                  Portfolio
+                </Link>
+                <Link href="/services" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                  Services
+                </Link>
+                <Link href="/contact" className="text-slate-600 hover:text-slate-900 font-medium transition-colors">
+                  Contact
+                </Link>
+              </nav>
+              <div className="hidden lg:block">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">Get a Quote</Button>
+              </div>
+            </header>
+
+            {/* Main Content */}
+            <main className="flex-grow">
+              {children}
+            </main>
+
+            {/* Footer */}
+            <footer className="bg-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h3 className="text-xl font-bold mb-4">IdeaVerse</h3>
+                  <p className="text-slate-400">
+                    Crafting exceptional digital experiences with a focus on quality and innovation.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+                  <ul className="space-y-2">
+                    <li><Link href="/about" className="text-slate-400 hover:text-white transition-colors">About Us</Link></li>
+                    <li><Link href="/portfolio" className="text-slate-400 hover:text-white transition-colors">Portfolio</Link></li>
+                    <li><Link href="/services" className="text-slate-400 hover:text-white transition-colors">Services</Link></li>
+                    <li><Link href="/contact" className="text-slate-400 hover:text-white transition-colors">Contact</Link></li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+                  <p className="text-slate-400">Email: hello@ideaverse.com</p>
+                  <p className="text-slate-400">Phone: +1 (555) 123-4567</p>
+                  <div className="flex gap-4 mt-4">
+                    {/* Social Media Icons - Placeholder */}
+                    <Link href="#" className="text-slate-400 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/></svg></Link>
+                    <Link href="#" className="text-slate-400 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17-18 11.6 2.2.1 4.4-.6 6-2 2.8-2.3 3.5-5.4 2.5-8C8.5 7.1 4.6 4.4 2 4c3.2 2.9 5.7 5 8 5-1.5-2.3-2.2-4.9-.8-7C4.9 3.6 2.5 2.1 2 2c.9 1.2 1.8 2.5 2.8 3.8 1.2 1.5 2.4 3 3.8 4.5 1.4 1.5 2.8 3 4.3 4.5 1.5 1.5 3 2.9 4.5 4.3 1.5 1.4 2.9 2.8 4.3 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.2 4.2 1.4 1.4 2.8 2.8 4.\

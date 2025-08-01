@@ -3,9 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   ArrowRight,
   Star,
@@ -15,11 +12,6 @@ import {
   Heart,
   Target,
   Lightbulb,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  MessageCircle,
   CheckCircle,
   Menu,
   X,
@@ -110,6 +102,7 @@ export default function HomePage() {
     { id: "about", label: "About" },
     { id: "services", label: "Services" },
     { id: "portfolio", label: "Portfolio" },
+    { id: "products", label: "Products" }, // Added Products to navigation
     { id: "testimonials", label: "Testimonials" },
     { id: "contact", label: "Contact" },
   ]
@@ -295,7 +288,7 @@ export default function HomePage() {
           transition={{ duration: 1, delay: 0.7 }}
           animate={{
             y: [20, -20, 20],
-            transition: { duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+            transition: { duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", },
           }}
         />
         <motion.div
@@ -800,20 +793,22 @@ export default function HomePage() {
                 client: "Breethr",
                 industry: "HR Technology",
                 impact: { delivery: "On-time", quality: "Exceptional", satisfaction: "100%" },
-                image: "/placeholder.svg?height=400&width=600",
+                image: "/placeholder.png?height=400&width=600",
                 testimonial:
                   "IdeaVerse delivered comprehensive solutions that exceeded our expectations. Their end-to-end expertise made all the difference.",
                 author: "Breethr Team",
+                link: "/portfolio/breethr-case-study",
               },
               {
                 title: "ActiveBuildings: Ongoing Partnership",
                 client: "ActiveBuildings",
                 industry: "PropTech",
                 impact: { partnership: "Active", scope: "Full-stack", approach: "Collaborative" },
-                image: "/placeholder.svg?height=400&width=600",
+                image: "/placeholder.png?height=400&width=600",
                 testimonial:
                   "Working with IdeaVerse feels like having an extended technical team. Their expertise spans every aspect of our development needs.",
                 author: "ActiveBuildings Team",
+                link: "/portfolio/activebuildings-case-study",
               },
             ].map((study, index) => (
               <motion.div
@@ -840,7 +835,7 @@ export default function HomePage() {
                   </div>
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary">{study.industry}</Badge>
+                      <Badge variant="secondary" className="text-xs sm:text-sm">{study.industry}</Badge>
                       <div className="flex items-center text-yellow-500">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 fill-current" />
@@ -870,6 +865,14 @@ export default function HomePage() {
                       "{study.testimonial}"
                       <footer className="mt-2 text-xs sm:text-sm font-medium text-slate-900">— {study.author}</footer>
                     </blockquote>
+                    <Link href={study.link}>
+                      <motion.div {...scaleOnHover}>
+                        <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-sm sm:text-base">
+                          View Case Study
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </motion.div>
+                    </Link>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -892,6 +895,130 @@ export default function HomePage() {
                   className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 bg-transparent border-2 border-slate-300 hover:bg-slate-100"
                 >
                   Learn More About Our Work
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                </Button>
+              </motion.div>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section id="products" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="text-center mb-16 sm:mb-20"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 px-4">
+              Our{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                Internal Products
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto px-4">
+              Beyond client work, we innovate and build our own tools and platforms to push the boundaries of technology.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10"
+            initial="initial"
+            whileInView="animate"
+            variants={staggerChildren}
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                title: "IdeaFlow AI",
+                description: "An AI-powered brainstorming and project planning tool for creative teams.",
+                image: "/placeholder.png?height=300&width=400",
+                link: "/products/idea-flow-ai",
+                features: ["AI-driven idea generation", "Collaborative workspaces", "Task management integration"],
+              },
+              {
+                title: "DevOps Dashboard",
+                description: "A comprehensive dashboard for monitoring CI/CD pipelines and cloud infrastructure.",
+                image: "/placeholder.png?height=300&width=400",
+                link: "/products/devops-dashboard",
+                features: ["Real-time metrics", "Alerting & notifications", "Deployment tracking"],
+              },
+              {
+                title: "PixelPerfect UI Kit",
+                description: "A highly customizable React UI component library built with Tailwind CSS.",
+                image: "/placeholder.png?height=300&width=400",
+                link: "/products/pixel-perfect-ui-kit",
+                features: ["Accessible components", "Theming support", "Extensive documentation"],
+              },
+            ].map((product, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Card className="h-full border-0 bg-white hover:shadow-2xl transition-all duration-500 overflow-hidden group">
+                  <div className="aspect-video overflow-hidden relative">
+                    <motion.img
+                      src={product.image}
+                      alt={product.title}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-xl sm:text-2xl text-slate-900 mb-2">{product.title}</CardTitle>
+                    <p className="text-slate-600 text-base sm:text-lg">{product.description}</p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <ul className="space-y-1">
+                      {product.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center text-slate-600 text-sm">
+                          <CheckCircle className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link href={product.link}>
+                      <motion.div {...scaleOnHover}>
+                        <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-sm sm:text-base">
+                          Learn More
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </motion.div>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* CTA for Products */}
+          <motion.div
+            className="text-center mt-12 sm:mt-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <Link href="/products">
+              <motion.div {...scaleOnHover}>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 bg-transparent border-2 border-slate-300 hover:bg-slate-100"
+                >
+                  Explore All Products
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </motion.div>
@@ -973,7 +1100,7 @@ export default function HomePage() {
               viewport={{ once: true }}
             >
               <motion.img
-                src="/placeholder.svg?height=80&width=80"
+                src="/placeholder.png?height=80&width=80"
                 alt="Client testimonial"
                 className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white/30"
                 whileHover={{ scale: 1.1, rotate: 5 }}
@@ -1007,353 +1134,4 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-8 relative">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16 sm:mb-20"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Badge className="mb-4 sm:mb-6 bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 border-blue-200 text-sm sm:text-lg px-3 sm:px-4 py-1 sm:py-2">
-              <Clock className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-              We respond within 24 hours
-            </Badge>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 px-4">
-              Ready to start your{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                next project?
-              </span>
-            </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto px-4">
-              Let's discuss how we can help bring your technical vision to life. We're selective about our partnerships
-              to ensure we can deliver exceptional results.
-            </p>
-          </motion.div>
-
-          {/* Contact Methods */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20"
-            initial="initial"
-            whileInView="animate"
-            variants={staggerChildren}
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                icon: Mail,
-                title: "Email Us",
-                description: "Get in touch via email",
-                contact: "hello@ideaverse.com",
-                color: "from-blue-400 to-blue-600",
-              },
-              {
-                icon: Phone,
-                title: "Schedule a Call",
-                description: "Book a consultation",
-                contact: "Available by appointment",
-                color: "from-green-400 to-green-600",
-              },
-              {
-                icon: MessageCircle,
-                title: "Project Discussion",
-                description: "Discuss your requirements",
-                contact: "Free initial consultation",
-                color: "from-purple-400 to-purple-600",
-              },
-              {
-                icon: MapPin,
-                title: "Remote First",
-                description: "Global collaboration",
-                contact: "Working worldwide",
-                color: "from-orange-400 to-orange-600",
-              },
-            ].map((method, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="h-full text-center border-0 bg-white hover:shadow-2xl transition-all duration-500 cursor-pointer group">
-                  <CardContent className="p-6 sm:p-8">
-                    <motion.div
-                      className={`w-16 sm:w-20 h-16 sm:h-20 bg-gradient-to-r ${method.color} rounded-2xl sm:rounded-3xl flex items-center justify-center text-white mb-4 sm:mb-6 mx-auto`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <method.icon className="h-6 sm:h-8 w-6 sm:w-8" />
-                    </motion.div>
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3">{method.title}</h3>
-                    <p className="text-slate-600 mb-3 sm:mb-4 text-sm sm:text-base">{method.description}</p>
-                    <p className="text-blue-600 font-medium group-hover:text-blue-700 transition-colors text-sm sm:text-base">
-                      {method.contact}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Quick Contact Form */}
-          <motion.div
-            className="max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Card className="border-0 bg-white shadow-2xl">
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl sm:text-3xl text-slate-900">Start a conversation</CardTitle>
-                <p className="text-slate-600 text-base sm:text-lg">
-                  Tell us about your project and we'll get back to you within 24 hours.
-                </p>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-4 sm:space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
-                    >
-                      <label className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label>
-                      <Input type="text" placeholder="John Doe" className="h-10 sm:h-12" />
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, x: 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
-                    >
-                      <label className="block text-sm font-medium text-slate-700 mb-2">Email Address *</label>
-                      <Input type="email" placeholder="john@company.com" className="h-10 sm:h-12" />
-                    </motion.div>
-                  </div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Company Name</label>
-                    <Input type="text" placeholder="Your Company" className="h-10 sm:h-12" />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Project Type *</label>
-                    <Select>
-                      <SelectTrigger className="h-10 sm:h-12">
-                        <SelectValue placeholder="Select project type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="backend">Backend Development</SelectItem>
-                        <SelectItem value="frontend">Frontend Development</SelectItem>
-                        <SelectItem value="ai">AI Development</SelectItem>
-                        <SelectItem value="fullstack">Full-Stack Project</SelectItem>
-                        <SelectItem value="cloud">Cloud Infrastructure</SelectItem>
-                        <SelectItem value="consultation">Technical Consultation</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    viewport={{ once: true }}
-                  >
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Project Details *</label>
-                    <Textarea
-                      placeholder="Tell us about your project requirements, timeline, and goals..."
-                      rows={4}
-                      className="resize-none"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.div {...scaleOnHover}>
-                      <Button
-                        type="submit"
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-base sm:text-lg py-4 sm:py-6 h-auto"
-                      >
-                        <motion.span
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                        >
-                          Send Project Inquiry
-                        </motion.span>
-                        <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                      </Button>
-                    </motion.div>
-                  </motion.div>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* CTA to Contact Page */}
-          <motion.div
-            className="text-center mt-12 sm:mt-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/contact">
-              <motion.div {...scaleOnHover}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 bg-transparent border-2 border-slate-300 hover:bg-slate-100"
-                >
-                  More Ways to Connect
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                </Button>
-              </motion.div>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Animated background */}
-        <motion.div
-          className="absolute inset-0 opacity-5"
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{ duration: 50, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          style={{
-            backgroundImage: "linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)",
-            backgroundSize: "200px 200px",
-          }}
-        />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12"
-            initial="initial"
-            whileInView="animate"
-            variants={staggerChildren}
-            viewport={{ once: true }}
-          >
-            <motion.div variants={fadeInUp}>
-              <motion.div
-                className="flex items-center space-x-3 mb-4 sm:mb-6 cursor-pointer"
-                onClick={() => scrollToSection("home")}
-                whileHover={{ scale: 1.05 }}
-              >
-                <motion.div
-                  className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700 rounded-xl flex items-center justify-center text-white font-bold text-lg sm:text-xl relative overflow-hidden"
-                  animate={{
-                    boxShadow: [
-                      "0 0 0px rgba(59, 130, 246, 0.3)",
-                      "0 0 20px rgba(59, 130, 246, 0.5)",
-                      "0 0 0px rgba(59, 130, 246, 0.3)",
-                    ],
-                  }}
-                  transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                    animate={{
-                      x: ["-100%", "100%"],
-                    }}
-                    transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                  />
-                  <motion.span
-                    className="relative z-10"
-                    animate={{
-                      rotate: [0, 360],
-                    }}
-                    transition={{ duration: 12, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                  >
-                    IV
-                  </motion.span>
-                </motion.div>
-                <span className="text-xl sm:text-2xl font-bold">IdeaVerse</span>
-              </motion.div>
-              <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-                A boutique development studio delivering exceptional technical solutions for forward-thinking companies.
-              </p>
-            </motion.div>
-
-            {[
-              {
-                title: "Company",
-                links: [
-                  { label: "About Us", href: "/about" },
-                  { label: "Our Approach", href: "/approach" },
-                  { label: "Case Studies", href: "/portfolio" },
-                  { label: "Contact", href: "/contact" },
-                ],
-              },
-              {
-                title: "Services",
-                links: [
-                  { label: "Backend Development", href: "/services" },
-                  { label: "Frontend Interfaces", href: "/services" },
-                  { label: "AI Development", href: "/services" },
-                  { label: "Cloud Infrastructure", href: "/services" },
-                ],
-              },
-              {
-                title: "Connect",
-                links: [
-                  { label: "Start a Project", href: "/contact" },
-                  { label: "Schedule Consultation", href: "/contact" },
-                  { label: "Partnership Inquiry", href: "/contact" },
-                  { label: "Technical Discussion", href: "/contact" },
-                ],
-              },
-            ].map((section, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <h4 className="font-semibold mb-4 sm:mb-6 text-lg sm:text-xl">{section.title}</h4>
-                <div className="space-y-2 sm:space-y-3">
-                  {section.links.map((link, linkIndex) => (
-                    <motion.div key={linkIndex} whileHover={{ x: 10 }} transition={{ duration: 0.2 }}>
-                      <Link
-                        href={link.href}
-                        className="block text-slate-400 hover:text-white transition-colors text-base sm:text-lg"
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="border-t border-slate-800 mt-12 sm:mt-16 pt-6 sm:pt-8 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-slate-400 text-base sm:text-lg">
-              &copy; 2024 IdeaVerse. All rights reserved. Crafted with precision for exceptional partnerships.
-            </p>
-          </motion.div>
-        </div>
-      </footer>
-    </div>
-  )
-}
+      <section id="contact" className\

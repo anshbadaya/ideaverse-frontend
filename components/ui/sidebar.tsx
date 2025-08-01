@@ -1,7 +1,5 @@
 "use client"
 
-import { SheetClose } from "@/components/ui/sheet"
-
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -10,7 +8,7 @@ import { Home, Info, Briefcase, Mail, Menu, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
@@ -42,25 +40,30 @@ export function Sidebar() {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden">
-          <Menu className="h-6 w-6" />
-          <span className="sr-only">Toggle navigation menu</span>
+        <Button variant="ghost" size="icon" className={cn("lg:hidden")}>
+          <Menu className={cn("h-6 w-6")} />
+          <span className={cn("sr-only")}>Toggle navigation menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex flex-col p-4 sm:p-6 w-64">
-        <div className="flex items-center justify-between mb-8">
-          <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-            <img src="/logo.png" alt="IdeaVerse Logo" className="h-8 w-auto" />
-            <span className="text-xl font-bold text-slate-900">IdeaVerse</span>
+      <SheetContent side="left" className={cn("flex flex-col p-4 sm:p-6 w-64")}>
+        <div className={cn("flex items-center justify-between mb-8")}>
+          <Link href="/" className={cn("flex items-center gap-2")} onClick={() => setIsOpen(false)}>
+            <img src="/logo.png" alt="IdeaVerse Logo" className={cn("h-8 w-auto")} />
+            <span className={cn("text-xl font-bold text-slate-900")}>IdeaVerse</span>
           </Link>
           <SheetClose asChild>
             <Button variant="ghost" size="icon">
-              <X className="h-6 w-6" />
-              <span className="sr-only">Close menu</span>
+              <X className={cn("h-6 w-6")} />
+              <span className={cn("sr-only")}>Close menu</span>
             </Button>
           </SheetClose>
         </div>
-        <motion.nav className="flex flex-col gap-2" initial="hidden" animate="visible" variants={containerVariants}>
+        <motion.nav
+          className={cn("flex flex-col gap-2")}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
           {navItems.map((item) => (
             <motion.div key={item.name} variants={itemVariants}>
               <Link
@@ -71,7 +74,7 @@ export function Sidebar() {
                 )}
                 onClick={() => setIsOpen(false)}
               >
-                <item.icon className="h-5 w-5" />
+                <item.icon className={cn("h-5 w-5")} />
                 {item.name}
               </Link>
             </motion.div>

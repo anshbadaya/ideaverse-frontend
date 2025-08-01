@@ -24,7 +24,6 @@ const CollapsibleContent = React.forwardRef<
     {children}
   </CollapsiblePrimitive.Content>
 ))
-
 CollapsibleContent.displayName = CollapsiblePrimitive.Content.displayName
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent }

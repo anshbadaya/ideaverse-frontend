@@ -1,174 +1,143 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { Users, Lightbulb, Rocket, Handshake } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import type React from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Lightbulb, Users, Rocket } from "lucide-react"
+import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 export default function AboutPage() {
-  const fadeIn = {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
-  }
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const stats = [
-    { label: "Years in Business", value: "10+", icon: Lightbulb },
-    { label: "Projects Completed", value: "200+", icon: Rocket },
-    { label: "Satisfied Clients", value: "150+", icon: Handshake },
-    { label: "Expert Team Members", value: "50+", icon: Users },
-  ]
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white pt-24 sm:pt-32 pb-16 sm:pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16 sm:mb-20"
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+    <div className={cn("flex flex-col min-h-screen pt-20")}>
+      <main className={cn("flex-1")}>
+        <section
+          className={cn("w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-slate-900 to-slate-800 text-white")}
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-            About{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">IdeaVerse</span>
-          </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            We are a passionate team of innovators and problem-solvers dedicated to crafting exceptional digital
-            experiences.
-          </p>
-        </motion.div>
+          <div className={cn("container px-4 md:px-6 text-center")}>
+            <h1 className={cn("text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none")}>
+              About IdeaVerse
+            </h1>
+            <p className={cn("mx-auto max-w-[700px] text-slate-300 md:text-xl mt-4")}>
+              We are a boutique development studio dedicated to transforming bold ideas into digital reality.
+            </p>
+          </div>
+        </section>
 
-        {/* Our Story Section */}
-        <section className="mb-16 sm:mb-20">
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn}>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">Our Story & Mission</h2>
-              <p className="text-slate-700 text-lg leading-relaxed mb-4">
-                Founded with a vision to transform ideas into impactful digital realities, IdeaVerse has grown into a
-                leading development studio. We believe in the power of technology to solve complex problems and create
-                meaningful connections. Our journey began with a commitment to quality over quantity, a principle that
-                continues to guide every project we undertake.
+        <section className={cn("w-full py-12 md:py-24 lg:py-32 bg-white")}>
+          <div className={cn("container px-4 md:px-6 grid gap-10 lg:grid-cols-2 lg:gap-16")}>
+            <div className={cn("space-y-6")}>
+              <h2 className={cn("text-3xl font-bold tracking-tighter sm:text-4xl")}>Our Philosophy</h2>
+              <p className={cn("text-slate-700 md:text-lg")}>
+                At IdeaVerse, we believe in quality over quantity. Every project we undertake is a testament to our
+                commitment to excellence, meticulous attention to detail, and a passion for innovation. We don't just
+                build software; we craft solutions that stand the test of time and deliver tangible value.
               </p>
-              <p className="text-slate-700 text-lg leading-relaxed">
-                Our mission is to empower businesses and individuals with cutting-edge software solutions that are not
-                only functional but also intuitive, scalable, and aesthetically pleasing. We strive to build
-                long-lasting partnerships with our clients, working collaboratively to achieve their strategic goals and
-                exceed expectations.
+              <p className={cn("text-slate-700 md:text-lg")}>
+                Our approach is collaborative and transparent. We work closely with our clients, ensuring their vision
+                is at the forefront of every development phase. From initial concept to deployment and beyond, we are
+                partners in your success.
               </p>
-            </motion.div>
-            <motion.div variants={fadeIn} className="relative">
-              <img
-                src="/placeholder.png?height=500&width=700"
-                alt="Our Story"
-                className="rounded-xl shadow-lg w-full h-auto object-cover"
+            </div>
+            <div className={cn("grid gap-6 md:grid-cols-2")}>
+              <PhilosophyCard
+                icon={Lightbulb}
+                title="Innovation"
+                description="Pushing the boundaries of technology to create cutting-edge solutions."
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-500/20 rounded-xl"></div>
-            </motion.div>
-          </motion.div>
+              <PhilosophyCard
+                icon={Users}
+                title="Collaboration"
+                description="Working hand-in-hand with clients to achieve shared goals."
+              />
+              <PhilosophyCard
+                icon={Rocket}
+                title="Excellence"
+                description="Delivering high-quality, robust, and scalable software."
+              />
+              <PhilosophyCard
+                icon={Lightbulb} // Reusing icon for demonstration, replace with a unique one if available
+                title="Integrity"
+                description="Operating with honesty and transparency in all our endeavors."
+              />
+            </div>
+          </div>
         </section>
 
-        {/* Our Values Section */}
-        <section className="mb-16 sm:mb-20">
-          <motion.h2
-            className="text-center text-3xl sm:text-4xl font-bold text-slate-900 mb-12"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Our Core Values
-          </motion.h2>
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-          >
-            {[
-              {
-                title: "Innovation",
-                description:
-                  "Continuously exploring new technologies and creative approaches to deliver groundbreaking solutions.",
-              },
-              {
-                title: "Quality",
-                description:
-                  "Committed to excellence in every line of code and every design element, ensuring robust and reliable products.",
-              },
-              {
-                title: "Collaboration",
-                description:
-                  "Fostering strong partnerships with clients, working hand-in-hand to achieve shared success.",
-              },
-              {
-                title: "Integrity",
-                description: "Operating with transparency, honesty, and ethical practices in all our interactions.",
-              },
-              {
-                title: "Client-Centricity",
-                description:
-                  "Placing our clients' needs at the forefront, delivering solutions that truly add value to their business.",
-              },
-              {
-                title: "Adaptability",
-                description: "Embracing change and evolving with the dynamic digital landscape to stay ahead.",
-              },
-            ].map((value, index) => (
-              <motion.div key={index} variants={fadeIn}>
-                <Card className="h-full border-0 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-6 sm:p-8">
-                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">{value.title}</h3>
-                    <p className="text-slate-600 text-base sm:text-lg">{value.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+        <section className={cn("w-full py-12 md:py-24 lg:py-32 bg-slate-50")}>
+          <div className={cn("container px-4 md:px-6 text-center")}>
+            <h2 className={cn("text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl")}>Meet Our Team</h2>
+            <p className={cn("mx-auto max-w-[700px] text-slate-600 md:text-xl mt-4")}>
+              Our diverse team of experts brings a wealth of experience and passion to every project.
+            </p>
+            <div className={cn("grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-12")}>
+              <TeamMemberCard
+                name="Jane Doe"
+                title="CEO & Lead Architect"
+                image="/placeholder-user.png"
+                description="With over 15 years in software architecture, Jane leads our technical vision."
+              />
+              <TeamMemberCard
+                name="John Smith"
+                title="Head of Engineering"
+                image="/placeholder-user.png"
+                description="John is a full-stack maestro, ensuring seamless integration across all layers."
+              />
+              <TeamMemberCard
+                name="Emily White"
+                title="AI/ML Specialist"
+                image="/placeholder-user.png"
+                description="Emily is at the forefront of AI innovation, developing intelligent solutions."
+              />
+            </div>
+          </div>
         </section>
-
-        {/* Stats Section */}
-        <section>
-          <motion.h2
-            className="text-center text-3xl sm:text-4xl font-bold text-slate-900 mb-12"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Our Achievements
-          </motion.h2>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-          >
-            {stats.map((stat, index) => (
-              <motion.div key={index} variants={fadeIn}>
-                <Card className="h-full text-center border-0 bg-white shadow-lg">
-                  <CardContent className="p-6 sm:p-8">
-                    <stat.icon className="h-12 w-12 sm:h-16 sm:w-16 text-blue-600 mx-auto mb-4" />
-                    <p className="text-5xl sm:text-6xl font-bold text-slate-900 mb-2">{stat.value}</p>
-                    <h3 className="text-lg sm:text-xl font-medium text-slate-700">{stat.label}</h3>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-      </div>
+      </main>
     </div>
+  )
+}
+
+interface PhilosophyCardProps {
+  icon: React.ElementType
+  title: string
+  description: string
+}
+
+function PhilosophyCard({ icon: Icon, title, description }: PhilosophyCardProps) {
+  return (
+    <Card className={cn("flex flex-col items-center text-center p-6")}>
+      <CardHeader>
+        <div className={cn("flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 mb-4")}>
+          <Icon className={cn("h-6 w-6")} />
+        </div>
+        <CardTitle className={cn("text-xl font-bold")}>{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className={cn("text-slate-600")}>{description}</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+interface TeamMemberCardProps {
+  name: string
+  title: string
+  image: string
+  description: string
+}
+
+function TeamMemberCard({ name, title, image, description }: TeamMemberCardProps) {
+  return (
+    <Card className={cn("flex flex-col items-center text-center p-6")}>
+      <Image
+        src={image || "/placeholder.png"}
+        alt={name}
+        width={120}
+        height={120}
+        className={cn("rounded-full mb-4 object-cover aspect-square")}
+      />
+      <CardTitle className={cn("text-xl font-bold")}>{name}</CardTitle>
+      <p className={cn("text-blue-600 font-medium mb-2")}>{title}</p>
+      <CardContent>
+        <p className={cn("text-slate-600")}>{description}</p>
+      </CardContent>
+    </Card>
   )
 }

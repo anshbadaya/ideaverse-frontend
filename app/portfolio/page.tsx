@@ -1,136 +1,136 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
+import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export default function PortfolioPage() {
-  const fadeIn = {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
-  }
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const projects = [
-    {
-      name: "Breethr - AI-Powered Wellness App",
-      description:
-        "A revolutionary mobile application that uses AI to provide personalized breathing exercises and mindfulness techniques.",
-      image: "/placeholder.png?height=400&width=600",
-      tags: ["Mobile App", "AI/ML", "HealthTech", "UI/UX"],
-      link: "#",
-    },
-    {
-      name: "ActiveBuildings - Smart Building Management",
-      description:
-        "A comprehensive web platform for managing smart building systems, optimizing energy consumption and operational efficiency.",
-      image: "/placeholder.png?height=400&width=600",
-      tags: ["Web Platform", "IoT", "SaaS", "Data Analytics"],
-      link: "#",
-    },
-    {
-      name: "QuantumFlow - Secure Data Exchange",
-      description:
-        "A blockchain-powered solution for secure and transparent data exchange between enterprises, ensuring data integrity and privacy.",
-      image: "/placeholder.png?height=400&width=600",
-      tags: ["Blockchain", "Security", "Enterprise", "Backend"],
-      link: "#",
-    },
-    {
-      name: "EcoHarvest - Sustainable Agriculture Platform",
-      description:
-        "An intelligent platform assisting farmers with crop management, yield prediction, and sustainable farming practices using satellite imagery.",
-      image: "/placeholder.png?height=400&width=600",
-      tags: ["AI/ML", "Agriculture", "Web App", "GIS"],
-      link: "#",
-    },
-    {
-      name: "Synapse Connect - Real-time Collaboration Tool",
-      description:
-        "A high-performance web-based collaboration suite with real-time document editing, video conferencing, and project management features.",
-      image: "/placeholder.png?height=400&width=600",
-      tags: ["Web App", "Real-time", "Productivity", "Frontend"],
-      link: "#",
-    },
-    {
-      name: "MediTrack - Patient Management System",
-      description:
-        "A secure and intuitive system for healthcare providers to manage patient records, appointments, and billing, enhancing clinic efficiency.",
-      image: "/placeholder.png?height=400&width=600",
-      tags: ["Healthcare", "SaaS", "Database", "Security"],
-      link: "#",
-    },
-  ]
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white pt-24 sm:pt-32 pb-16 sm:pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16 sm:mb-20"
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+    <div className={cn("flex flex-col min-h-screen pt-20")}>
+      <main className={cn("flex-1")}>
+        <section
+          className={cn("w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-slate-900 to-slate-800 text-white")}
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-            Our{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">Portfolio</span>
-          </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            Explore a selection of our recent projects that showcase our expertise and commitment to delivering
-            impactful digital solutions.
-          </p>
-        </motion.div>
+          <div className={cn("container px-4 md:px-6 text-center")}>
+            <h1 className={cn("text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none")}>
+              Our Featured Work
+            </h1>
+            <p className={cn("mx-auto max-w-[700px] text-slate-300 md:text-xl mt-4")}>
+              Explore our portfolio of successful projects and see how we bring ideas to life.
+            </p>
+          </div>
+        </section>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
-          initial="initial"
-          animate="animate"
-          variants={staggerContainer}
-        >
-          {projects.map((project, index) => (
-            <motion.div key={index} variants={fadeIn}>
-              <Card className="h-full flex flex-col border-0 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="p-0">
-                  <img
-                    src={project.image || "/placeholder.png"}
-                    alt={project.name}
-                    className="w-full h-48 object-cover rounded-t-xl"
-                  />
-                </CardHeader>
-                <CardContent className="flex-grow p-6">
-                  <CardTitle className="text-xl font-bold text-slate-900 mb-3">{project.name}</CardTitle>
-                  <p className="text-slate-600 text-base mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="p-6 pt-0">
-                  <Button variant="ghost" className="text-blue-600 hover:text-blue-700 group">
-                    View Case Study
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+        <section className={cn("w-full py-12 md:py-24 lg:py-32 bg-white")}>
+          <div className={cn("container px-4 md:px-6")}>
+            <div className={cn("grid gap-8 md:grid-cols-2 lg:grid-cols-3")}>
+              <PortfolioCard
+                title="Breethr - AI-Powered Wellness App"
+                description="A mobile application leveraging AI to provide personalized breathing exercises and mindfulness techniques."
+                image="/placeholder.png"
+                tags={["Mobile App", "AI/ML", "Healthcare", "React Native"]}
+                link="#"
+              />
+              <PortfolioCard
+                title="ActiveBuildings - Smart Building Management"
+                description="A comprehensive web platform for monitoring and managing energy consumption and environmental factors in commercial buildings."
+                image="/placeholder.png"
+                tags={["Web Platform", "IoT", "Data Analytics", "Next.js", "Node.js"]}
+                link="#"
+              />
+              <PortfolioCard
+                title="QuantumFlow - Secure Data Exchange"
+                description="A blockchain-based solution for secure and transparent data exchange between enterprises."
+                image="/placeholder.png"
+                tags={["Blockchain", "Security", "Enterprise", "Solidity"]}
+                link="#"
+              />
+              <PortfolioCard
+                title="EcoHarvest - Sustainable Agriculture Platform"
+                description="An agricultural tech platform optimizing crop yields and resource management through satellite imagery and machine learning."
+                image="/placeholder.png"
+                tags={["Agriculture", "AI/ML", "SaaS", "Python", "AWS"]}
+                link="#"
+              />
+              <PortfolioCard
+                title="FitFusion - Personalized Fitness Coach"
+                description="An interactive web application offering custom workout plans and nutrition tracking, integrated with wearable devices."
+                image="/placeholder.png"
+                tags={["Fitness", "Web App", "API Integration", "React", "GraphQL"]}
+                link="#"
+              />
+              <PortfolioCard
+                title="ArtisanConnect - Creator Marketplace"
+                description="A vibrant online marketplace connecting independent artists and crafters with buyers worldwide, featuring secure payment gateways."
+                image="/placeholder.png"
+                tags={["E-commerce", "Marketplace", "Community", "Stripe", "Next.js"]}
+                link="#"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className={cn("w-full py-12 md:py-24 lg:py-32 bg-slate-50")}>
+          <div className={cn("container px-4 md:px-6 text-center")}>
+            <h2 className={cn("text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl")}>
+              Have a Project in Mind?
+            </h2>
+            <p className={cn("mx-auto max-w-[700px] text-slate-600 md:text-xl mt-4")}>
+              Let's collaborate and build something amazing together.
+            </p>
+            <div className={cn("mt-8")}>
+              <Link href="/contact">
+                <Button size="lg" className={cn("bg-blue-600 hover:bg-blue-700 text-white")}>
+                  Discuss Your Project
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
+  )
+}
+
+interface PortfolioCardProps {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  link: string
+}
+
+function PortfolioCard({ title, description, image, tags, link }: PortfolioCardProps) {
+  return (
+    <Card className={cn("flex flex-col overflow-hidden h-full")}>
+      <div className={cn("relative w-full h-48")}>
+        <Image
+          src={image || "/placeholder.png"}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+          className={cn("rounded-t-lg")}
+        />
+      </div>
+      <CardHeader className={cn("flex-1")}>
+        <CardTitle className={cn("text-xl font-bold")}>{title}</CardTitle>
+        <CardDescription className={cn("text-slate-600")}>{description}</CardDescription>
+      </CardHeader>
+      <CardContent className={cn("p-6 pt-0")}>
+        <div className={cn("flex flex-wrap gap-2 mb-4")}>
+          {tags.map((tag, index) => (
+            <Badge key={index} variant="secondary" className={cn("bg-slate-100 text-slate-700")}>
+              {tag}
+            </Badge>
+          ))}
+        </div>
+        <Link href={link}>
+          <Button variant="outline" className={cn("w-full border-blue-600 text-blue-600 hover:bg-blue-50")}>
+            View Case Study
+          </Button>
+        </Link>
+      </CardContent>
+    </Card>
   )
 }

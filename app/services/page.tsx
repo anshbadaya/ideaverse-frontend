@@ -1,145 +1,141 @@
-"use client"
-
-import { motion } from "framer-motion"
+import type React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Code, Cloud, Brain, Layout, Database, Shield } from "lucide-react"
+import { CheckCircle2, Code, Cloud, Brain, Server, Layout } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function ServicesPage() {
-  const fadeIn = {
-    initial: { opacity: 0, y: 50 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" },
-  }
-
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const services = [
-    {
-      icon: Code,
-      title: "Custom Software Development",
-      description: "Tailored solutions built from the ground up to meet your unique business needs and challenges.",
-      details: [
-        "Web Application Development",
-        "Mobile App Development (iOS/Android)",
-        "Desktop Application Development",
-        "Enterprise Software Solutions",
-      ],
-    },
-    {
-      icon: Layout,
-      title: "UI/UX Design & Prototyping",
-      description: "Crafting intuitive, engaging, and visually stunning user interfaces that enhance user experience.",
-      details: [
-        "User Research & Analysis",
-        "Wireframing & Prototyping",
-        "User Interface (UI) Design",
-        "User Experience (UX) Design",
-      ],
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Solutions & DevOps",
-      description: "Leveraging cloud technologies for scalable, secure, and efficient infrastructure and operations.",
-      details: [
-        "Cloud Migration & Management (AWS, Azure, GCP)",
-        "CI/CD Pipeline Implementation",
-        "Infrastructure as Code (IaC)",
-        "Containerization (Docker, Kubernetes)",
-      ],
-    },
-    {
-      icon: Brain,
-      title: "AI & Machine Learning",
-      description:
-        "Integrating intelligent algorithms to automate processes, analyze data, and provide predictive insights.",
-      details: [
-        "Natural Language Processing (NLP)",
-        "Computer Vision",
-        "Predictive Analytics",
-        "Custom AI Model Development",
-      ],
-    },
-    {
-      icon: Database,
-      title: "Data Engineering & Analytics",
-      description:
-        "Building robust data pipelines and analytical solutions to transform raw data into actionable insights.",
-      details: [
-        "Data Warehousing & ETL",
-        "Big Data Solutions",
-        "Business Intelligence Dashboards",
-        "Data Visualization",
-      ],
-    },
-    {
-      icon: Shield,
-      title: "Cybersecurity Consulting",
-      description: "Protecting your digital assets with comprehensive security strategies and implementation.",
-      details: [
-        "Security Audits & Assessments",
-        "Penetration Testing",
-        "Compliance & Governance",
-        "Incident Response Planning",
-      ],
-    },
-  ]
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white pt-24 sm:pt-32 pb-16 sm:pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16 sm:mb-20"
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
-            Our{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">Services</span>
-          </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            At IdeaVerse, we offer a comprehensive suite of development services designed to bring your most ambitious
-            digital visions to life.
-          </p>
-        </motion.div>
+    <div className="flex flex-col min-h-screen pt-20">
+      <main className="flex-1">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+          <div className="container px-4 md:px-6 text-center">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+              Our Comprehensive Technical Solutions
+            </h1>
+            <p className="mx-auto max-w-[700px] text-slate-300 md:text-xl mt-4">
+              At IdeaVerse, we offer a full spectrum of development services to bring your vision to life.
+            </p>
+          </div>
+        </section>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
-          initial="initial"
-          animate="animate"
-          variants={staggerContainer}
-        >
-          {services.map((service, index) => (
-            <motion.div key={index} variants={fadeIn}>
-              <Card className="h-full flex flex-col border-0 bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader className="flex flex-col items-center text-center p-6 sm:p-8 pb-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white mb-4 sm:mb-6">
-                    <service.icon className="h-8 w-8 sm:h-10 sm:w-10" />
-                  </div>
-                  <CardTitle className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow p-6 sm:p-8 pt-4">
-                  <p className="text-slate-600 text-base sm:text-lg mb-6 text-center">{service.description}</p>
-                  <ul className="list-disc list-inside text-slate-700 space-y-2 text-sm sm:text-base">
-                    {service.details.map((detail, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="mr-2 text-blue-500">•</span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <ServiceCard
+                icon={Code}
+                title="Backend Development"
+                description="Robust and scalable server-side solutions using modern frameworks and databases."
+                features={[
+                  "API Development (REST, GraphQL)",
+                  "Database Design & Management",
+                  "Microservices Architecture",
+                  "Security & Authentication",
+                ]}
+              />
+              <ServiceCard
+                icon={Layout}
+                title="Frontend Development"
+                description="Intuitive and responsive user interfaces that provide exceptional user experiences."
+                features={[
+                  "React, Next.js, Vue.js",
+                  "Responsive Web Design",
+                  "Performance Optimization",
+                  "UI/UX Implementation",
+                ]}
+              />
+              <ServiceCard
+                icon={Brain}
+                title="AI & Machine Learning"
+                description="Integrating intelligent algorithms to automate processes and derive insights."
+                features={[
+                  "Custom AI Model Development",
+                  "Natural Language Processing",
+                  "Computer Vision",
+                  "Predictive Analytics",
+                ]}
+              />
+              <ServiceCard
+                icon={Cloud}
+                title="Cloud Infrastructure"
+                description="Designing, deploying, and managing scalable cloud environments."
+                features={[
+                  "AWS, Azure, Google Cloud",
+                  "Serverless Architectures",
+                  "DevOps & CI/CD Pipelines",
+                  "Containerization (Docker, Kubernetes)",
+                ]}
+              />
+              <ServiceCard
+                icon={Server}
+                title="Full-Stack Development"
+                description="End-to-end development, from database to user interface, for seamless applications."
+                features={[
+                  "Integrated Backend & Frontend",
+                  "Rapid Prototyping",
+                  "Scalable Architectures",
+                  "Comprehensive Testing",
+                ]}
+              />
+              <ServiceCard
+                icon={CheckCircle2}
+                title="Quality Assurance"
+                description="Ensuring the reliability, performance, and security of your software."
+                features={["Automated Testing", "Manual Testing", "Performance Testing", "Security Audits"]}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-slate-50">
+          <div className="container px-4 md:px-6 text-center">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Ready to Start Your Project?
+            </h2>
+            <p className="mx-auto max-w-[700px] text-slate-600 md:text-xl mt-4">
+              Contact us today to discuss your ideas and get a personalized quote.
+            </p>
+            <div className="mt-8">
+              <Link href="/contact">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+                  Get a Free Consultation
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
+  )
+}
+
+interface ServiceCardProps {
+  icon: React.ElementType
+  title: string
+  description: string
+  features: string[]
+}
+
+function ServiceCard({ icon: Icon, title, description, features }: ServiceCardProps) {
+  return (
+    <Card className="flex flex-col h-full">
+      <CardHeader>
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 mb-4">
+          <Icon className="h-6 w-6" />
+        </div>
+        <CardTitle className="text-2xl font-bold">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 flex flex-col">
+        <p className="text-slate-600 mb-4">{description}</p>
+        <ul className="space-y-2 text-slate-700 flex-1">
+          {features.map((feature, index) => (
+            <li key={index} className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-green-500" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
   )
 }

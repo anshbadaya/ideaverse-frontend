@@ -23,6 +23,13 @@ import {
 import Link from "next/link"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay, Navigation } from 'swiper/modules'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
 export default function HomePage() {
   const [scrollY, setScrollY] = useState(0)
@@ -41,6 +48,29 @@ export default function HomePage() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handleScrollForActiveSection = () => {
+      const sections = navItems.map(item => item.id)
+      const scrollPosition = window.scrollY + 100
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const offsetTop = element.offsetTop
+          const offsetHeight = element.offsetHeight
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScrollForActiveSection)
+    return () => window.removeEventListener("scroll", handleScrollForActiveSection)
   }, [])
 
   const fadeInUp = {
@@ -793,7 +823,8 @@ export default function HomePage() {
                 client: "Breethr",
                 industry: "HR Technology",
                 impact: { delivery: "On-time", quality: "Exceptional", satisfaction: "100%" },
-                image: "/placeholder.png?height=400&width=600",
+                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Workday_logo.svg/2560px-Workday_logo.svg.png",
                 testimonial:
                   "IdeaVerse delivered comprehensive solutions that exceeded our expectations. Their end-to-end expertise made all the difference.",
                 author: "Breethr Team",
@@ -804,7 +835,8 @@ export default function HomePage() {
                 client: "ActiveBuildings",
                 industry: "PropTech",
                 impact: { partnership: "Active", scope: "Full-stack", approach: "Collaborative" },
-                image: "/placeholder.png?height=400&width=600",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png",
                 testimonial:
                   "Working with IdeaVerse feels like having an extended technical team. Their expertise spans every aspect of our development needs.",
                 author: "ActiveBuildings Team",
@@ -832,6 +864,24 @@ export default function HomePage() {
                       whileHover={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     />
+                    {/* Logo overlay */}
+                    <motion.div
+                      className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <img
+                        src={study.logo}
+                        alt={`${study.client} logo`}
+                        className="h-8 w-auto object-contain"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
+                    </motion.div>
                   </div>
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
@@ -933,25 +983,34 @@ export default function HomePage() {
           >
             {[
               {
-                title: "IdeaFlow AI",
-                description: "An AI-powered brainstorming and project planning tool for creative teams.",
-                image: "/placeholder.png?height=300&width=400",
-                link: "/products/idea-flow-ai",
-                features: ["AI-driven idea generation", "Collaborative workspaces", "Task management integration"],
+                title: "PlayVot",
+                description: "A revolutionary voting and decision-making platform powered by blockchain technology.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                logo: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                link: "/products/playvot",
+                features: ["Blockchain voting", "Real-time results", "Secure authentication"],
+                category: "Voting Platform",
+                color: "from-purple-500 to-pink-500",
               },
               {
-                title: "DevOps Dashboard",
-                description: "A comprehensive dashboard for monitoring CI/CD pipelines and cloud infrastructure.",
-                image: "/placeholder.png?height=300&width=400",
-                link: "/products/devops-dashboard",
-                features: ["Real-time metrics", "Alerting & notifications", "Deployment tracking"],
+                title: "AIOutlook",
+                description: "Advanced AI-powered analytics and business intelligence platform for data-driven decisions.",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                logo: "https://images.unsplash.com/photo-1676299251950-0d9c4b5e0b5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                link: "/products/aioutlook",
+                features: ["AI analytics", "Predictive insights", "Custom dashboards"],
+                category: "AI Analytics",
+                color: "from-blue-500 to-cyan-500",
               },
               {
-                title: "PixelPerfect UI Kit",
-                description: "A highly customizable React UI component library built with Tailwind CSS.",
-                image: "/placeholder.png?height=300&width=400",
-                link: "/products/pixel-perfect-ui-kit",
-                features: ["Accessible components", "Theming support", "Extensive documentation"],
+                title: "Marketix",
+                description: "Comprehensive digital marketing automation platform with advanced campaign management.",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                link: "/products/marketix",
+                features: ["Campaign automation", "Performance tracking", "Multi-channel integration"],
+                category: "Marketing Platform",
+                color: "from-green-500 to-emerald-500",
               },
             ].map((product, index) => (
               <motion.div
@@ -975,18 +1034,91 @@ export default function HomePage() {
                       whileHover={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     />
+                    
+                    {/* Animated Logo */}
+                    <motion.div
+                      className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border border-white/20"
+                      initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div
+                        className="w-12 h-12 rounded-lg overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center"
+                        animate={{
+                          boxShadow: [
+                            "0 0 0px rgba(59, 130, 246, 0.2)",
+                            "0 0 20px rgba(59, 130, 246, 0.4)",
+                            "0 0 0px rgba(59, 130, 246, 0.2)",
+                          ],
+                        }}
+                        transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                      >
+                        <motion.img
+                          src={product.logo}
+                          alt={`${product.title} logo`}
+                          className="w-8 h-8 object-contain"
+                          animate={{
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 2, -2, 0],
+                          }}
+                          transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                          }}
+                        />
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Category Badge */}
+                    <motion.div
+                      className="absolute top-4 right-4"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <Badge 
+                        className={`bg-gradient-to-r ${product.color} text-white border-0 px-3 py-1 text-xs font-medium`}
+                      >
+                        {product.category}
+                      </Badge>
+                    </motion.div>
                   </div>
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-xl sm:text-2xl text-slate-900 mb-2">{product.title}</CardTitle>
-                    <p className="text-slate-600 text-base sm:text-lg">{product.description}</p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <CardTitle className="text-xl sm:text-2xl text-slate-900 mb-2">{product.title}</CardTitle>
+                      <p className="text-slate-600 text-base sm:text-lg">{product.description}</p>
+                    </motion.div>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <ul className="space-y-1">
                       {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-slate-600 text-sm">
-                          <CheckCircle className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        <motion.li 
+                          key={idx} 
+                          className="flex items-center text-slate-600 text-sm"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.2 + 0.5 + idx * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.2 + 0.6 + idx * 0.1 }}
+                            viewport={{ once: true }}
+                          >
+                            <CheckCircle className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                          </motion.div>
                           {feature}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                     <Link href={product.link}>
@@ -1077,61 +1209,340 @@ export default function HomePage() {
               ))}
             </motion.div>
 
-            <motion.blockquote
-              className="text-xl sm:text-3xl md:text-4xl font-medium text-white mb-8 sm:mb-10 leading-relaxed px-4"
-              animate={{
-                textShadow: [
-                  "0 0 0px rgba(255,255,255,0.5)",
-                  "0 0 20px rgba(255,255,255,0.8)",
-                  "0 0 0px rgba(255,255,255,0.5)",
-                ],
-              }}
-              transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-            >
-              "IdeaVerse brings a level of technical expertise and attention to detail that's rare to find. They don't
-              just deliver code - they deliver solutions that work."
-            </motion.blockquote>
-
+            {/* Testimonials Swiper */}
             <motion.div
-              className="flex items-center justify-center space-x-4 sm:space-x-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
+              className="mb-12"
             >
-              <motion.img
-                src="/placeholder.png?height=80&width=80"
-                alt="Client testimonial"
-                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white/30"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                transition={{ duration: 0.3 }}
-              />
-              <div className="text-left">
-                <div className="text-white font-semibold text-lg sm:text-xl">Satisfied Client</div>
-                <div className="text-blue-100 text-base sm:text-lg">Technology Partner</div>
-              </div>
-            </motion.div>
-          </motion.div>
+              <Swiper
+                modules={[Pagination, Autoplay, Navigation]}
+                spaceBetween={30}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+                navigation={true}
+                loop={true}
+                className="testimonials-swiper"
+                style={{
+                  '--swiper-pagination-color': '#ffffff',
+                  '--swiper-navigation-color': '#ffffff',
+                } as React.CSSProperties}
+              >
+                <SwiperSlide>
+                  <div className="text-center px-4">
+                    <motion.blockquote
+                      className="text-xl sm:text-3xl md:text-4xl font-medium text-white mb-8 sm:mb-10 leading-relaxed"
+                      animate={{
+                        textShadow: [
+                          "0 0 0px rgba(255,255,255,0.5)",
+                          "0 0 20px rgba(255,255,255,0.8)",
+                          "0 0 0px rgba(255,255,255,0.5)",
+                        ],
+                      }}
+                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                    >
+                      "IdeaVerse brings a level of technical expertise and attention to detail that's rare to find. They don't
+                      just deliver code - they deliver solutions that work."
+                    </motion.blockquote>
+                    <motion.div
+                      className="flex items-center justify-center space-x-4 sm:space-x-6"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white/30 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        A
+                      </motion.div>
+                      <div className="text-left">
+                        <div className="text-white font-semibold text-lg sm:text-xl">Abhinav</div>
+                        <div className="text-blue-100 text-base sm:text-lg">Senior Developer</div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </SwiperSlide>
 
-          {/* CTA to Testimonials Page */}
-          <motion.div
-            className="mt-12 sm:mt-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/testimonials">
-              <motion.div {...scaleOnHover}>
-                <Button variant="secondary" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6">
-                  Read Client Testimonials
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                </Button>
-              </motion.div>
-            </Link>
+                <SwiperSlide>
+                  <div className="text-center px-4">
+                    <motion.blockquote
+                      className="text-xl sm:text-3xl md:text-4xl font-medium text-white mb-8 sm:mb-10 leading-relaxed"
+                      animate={{
+                        textShadow: [
+                          "0 0 0px rgba(255,255,255,0.5)",
+                          "0 0 20px rgba(255,255,255,0.8)",
+                          "0 0 0px rgba(255,255,255,0.5)",
+                        ],
+                      }}
+                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                    >
+                      "Working with IdeaVerse has been an incredible experience. Their innovative approach and dedication to quality
+                      have transformed our project beyond expectations."
+                    </motion.blockquote>
+                    <motion.div
+                      className="flex items-center justify-center space-x-4 sm:space-x-6"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white/30 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        P
+                      </motion.div>
+                      <div className="text-left">
+                        <div className="text-white font-semibold text-lg sm:text-xl">Priyans</div>
+                        <div className="text-blue-100 text-base sm:text-lg">Product Manager</div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </SwiperSlide>
+
+                <SwiperSlide>
+                  <div className="text-center px-4">
+                    <motion.blockquote
+                      className="text-xl sm:text-3xl md:text-4xl font-medium text-white mb-8 sm:mb-10 leading-relaxed"
+                      animate={{
+                        textShadow: [
+                          "0 0 0px rgba(255,255,255,0.5)",
+                          "0 0 20px rgba(255,255,255,0.8)",
+                          "0 0 0px rgba(255,255,255,0.5)",
+                        ],
+                      }}
+                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                    >
+                      "The team at IdeaVerse is exceptional. They understand our vision perfectly and deliver solutions that not only
+                      meet but exceed our requirements every time."
+                    </motion.blockquote>
+                    <motion.div
+                      className="flex items-center justify-center space-x-4 sm:space-x-6"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white/30 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        S
+                      </motion.div>
+                      <div className="text-left">
+                        <div className="text-white font-semibold text-lg sm:text-xl">Siddhant</div>
+                        <div className="text-blue-100 text-base sm:text-lg">Tech Lead</div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </motion.div>
+
+            {/* CTA to Testimonials Page */}
+            <motion.div
+              className="mt-12 sm:mt-16"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Link href="/testimonials">
+                <motion.div {...scaleOnHover}>
+                  <Button variant="secondary" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6">
+                    Read More Testimonials
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Button>
+                </motion.div>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className\
+      <section id="contact" className="py-20 sm:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+        {/* Background Pattern */}
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          style={{
+            backgroundImage: "radial-gradient(circle, white 2px, transparent 2px)",
+            backgroundSize: "100px 100px",
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            className="text-center mb-16 sm:mb-20"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Let's Build Something
+              <span className="text-blue-400"> Amazing</span>
+            </motion.h2>
+            <motion.p
+              className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Ready to transform your ideas into reality? Let's discuss your project and create something extraordinary together.
+            </motion.p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/10 backdrop-blur-md border-white/20">
+                <CardHeader>
+                  <CardTitle className="text-2xl font-bold text-white">Get In Touch</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">First Name</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="John"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">Last Name</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Doe"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                    <textarea
+                      rows={4}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      placeholder="Tell us about your project..."
+                    />
+                  </div>
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3">
+                    Send Message
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                      <Users className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">Email</div>
+                      <div className="text-slate-300">hello@ideaverse.com</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                      <Zap className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">Phone</div>
+                      <div className="text-slate-300">+1 (555) 123-4567</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                      <Target className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">Location</div>
+                      <div className="text-slate-300">San Francisco, CA</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Business Hours</h3>
+                <div className="space-y-2 text-slate-300">
+                  <div className="flex justify-between">
+                    <span>Monday - Friday</span>
+                    <span>9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Saturday</span>
+                    <span>10:00 AM - 4:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Sunday</span>
+                    <span>Closed</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg z-50 flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ArrowUp className="h-5 w-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}

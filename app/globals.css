@@ -74,3 +74,54 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Swiper Styles */
+.testimonials-swiper {
+  padding-bottom: 60px !important;
+}
+
+.testimonials-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.testimonials-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active {
+  background: #ffffff !important;
+  transform: scale(1.2) !important;
+}
+
+.testimonials-swiper .swiper-button-next,
+.testimonials-swiper .swiper-button-prev {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s ease !important;
+}
+
+.testimonials-swiper .swiper-button-next:hover,
+.testimonials-swiper .swiper-button-prev:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.1) !important;
+}
+
+.testimonials-swiper .swiper-button-next::after,
+.testimonials-swiper .swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+
+@media (max-width: 768px) {
+  .testimonials-swiper .swiper-button-next,
+  .testimonials-swiper .swiper-button-prev {
+    display: none !important;
+  }
+}
